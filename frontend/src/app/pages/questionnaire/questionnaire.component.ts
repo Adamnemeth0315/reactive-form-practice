@@ -32,8 +32,13 @@ export class QuestionnaireComponent implements OnInit {
   })
 
   onSubmit() {
-    this.formValue = this.questionnaireForm.value;
-    console.log(this.formValue);
+    if(this.questionnaireForm.valid){
+      this.formValue = this.questionnaireForm.value;
+      console.log(this.formValue);
+      this.questionnaireForm.reset();
+    } else {
+      throw new Error('Form is not valid');
+    }
   }
 
   onStepPage(step: number): void {
