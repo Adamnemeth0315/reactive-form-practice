@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col-8 offset-2 d-flex justify-content-center">
+      <a routerLink="/new-hero" class="btn btn-primary mt-3">Új hős hozzáadása</a>
+    </div>
+  </div>
+  <div class="row">
+    <div 
+    class="col-10 col-md-6 col-lg-4 mx-auto mt-4 d-flex justify-content-center card-container" 
+    *ngFor="let hero of heroList$ | async">
+      <app-hero-card 
+      (updateHero)="updateHero($event)" 
+      (deleteHero)="onDelete($event)" 
+      (uploadImage)="onSave($event)" 
+      [hero]=hero
+      >
+      </app-hero-card>
+    </div>
+  </div>
+</div>
+
+<!-- Dialogs -->
+
+<ng-template #dialogTemplate let-data>
+  <h3 class="custom-dialog-title">{{ data.title }}</h3>
+  <p class="custom-dialog-content">{{ data.content }}</p>
+  <div class="btn-group custom-dialog-buttons">
+    <button class="btn btn-secondary" [mat-dialog-close]="">Mégse</button>
+    <button class="btn btn-primary" [mat-dialog-close]="data">Törlés</button>
+  </div>
+</ng-template>

@@ -1,0 +1,177 @@
+<div class="registry-container">
+  <div class="row">
+    <div class="col-10 offset-1">
+      <h1>Regisztráció</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8 offset-2">
+      <div *ngIf="user" class="col-10 mx-auto col-md-6 offset-md-3 mt-5">
+        <form [formGroup]="userForm" (ngSubmit)="setUserToDatabase()">
+          <div class="form-group">
+            <label for="username">Felhasználónév:</label>
+            <input
+              name="username"
+              id="username"
+              formControlName="username"
+              type="text"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  userForm.controls.username.errors &&
+                  userForm.controls.username.touched
+              }"
+            />
+            <div
+              class="invalid-feedback"
+              *ngIf="userForm.controls.username.hasError('usernameTaken')"
+            >
+              Ez a felhasználónév már létezik!
+            </div>
+            <div
+              class="invalid-feedback"
+              *ngIf="userForm.controls.username.hasError('required')"
+            >
+              A felhasználónév megadása kötelező!
+            </div>
+            <div
+              class="invalid-feedback"
+              *ngIf="userForm.controls.username.hasError('minlength')"
+            >
+              A felhasználónévnek legalább 3 karakteresnek kell lennie!
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email cím: </label>
+            <input
+              name="email"
+              id="email"
+              formControlName="email"
+              type="email"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  userForm.controls.email.errors &&
+                  userForm.controls.email.touched
+              }"
+            />
+            <div
+              class="invalid-feedback"
+              *ngIf="userForm.controls.email.hasError('required')"
+            >
+              Az emailcím megadása kötelező.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Jelszó:</label>
+            <i class="fa fa-eye m-2" (click)="showPassword()"></i>
+            <input
+              name="password"
+              id="password"
+              formControlName="password"
+              [type]="hide ? 'password' : 'text'"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  userForm.controls.password.errors &&
+                  userForm.controls.password.touched
+              }"
+            />
+            <div
+              class="invalid-feedback"
+              *ngIf="userForm.controls.password.hasError('required')"
+            >
+              A jelszó megadása kötelező.
+            </div>
+            <div
+              class="invalid-feedback"
+              *ngIf="userForm.controls.password.hasError('pattern')"
+            >
+              A jelszó minimum 8 karakteres kell, hogy legyen és legalább 1
+              kisbetűt,1 nagybetűt és 1 számot kell tartalmaznia.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="confirmPassword">Jelszó megerősítése</label>
+            <input
+              name="confirmPassword"
+              id="confirmPassword"
+              formControlName="confirmPassword"
+              [type]="hide ? 'password' : 'text'"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  userForm.controls.confirmPassword.errors &&
+                  userForm.controls.confirmPassword.touched
+              }"
+            />
+            <div
+              class="invalid-feedback"
+              *ngIf="
+                userForm.controls.confirmPassword.hasError('passwordMismatch')
+              "
+            >
+              A jelszavak nem egyeznek.
+            </div>
+            <div
+              class="invalid-feedback"
+              *ngIf="userForm.controls.confirmPassword.hasError('required')"
+            >
+              A jelszó megerősítése kötelező!
+            </div>
+          </div>
+
+          <div formGroupName="address" class="form-group">
+            <label for="zip">Irányítószám: </label>
+            <input
+              name="zip"
+              id="zip"
+              formControlName="zip"
+              type="number"
+              class="form-control"
+            />
+
+            <label for="country">Ország: </label>
+            <input
+              name="country"
+              id="country"
+              formControlName="country"
+              type="text"
+              class="form-control"
+            />
+
+            <label for="city">Város: </label>
+            <input
+              name="city"
+              id="city"
+              formControlName="city"
+              type="text"
+              class="form-control"
+            />
+
+            <label for="street">Utca: </label>
+            <input
+              name="street"
+              id="street"
+              formControlName="street"
+              type="text"
+              class="form-control"
+            />
+          </div>
+          <div class="d-grid col-8 mx-auto mt-3">
+            <button
+              [disabled]="userForm.invalid"
+              type="submit"
+              class="btn btn-primary btn-block my-5"
+            >
+              Regisztráció
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

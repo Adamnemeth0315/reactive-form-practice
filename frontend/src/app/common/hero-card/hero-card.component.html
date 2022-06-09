@@ -1,0 +1,19 @@
+<div class="card h-100 shadow-lg m-2" style="width: 18rem;" >
+  <img *ngIf=hero?.image src="{{ hero?.image?.url }}" class="card-img-top" style="height: 18rem;" alt="{{ hero?.name }}">
+  <img *ngIf=!hero?.image src="../../../assets/images/mystery-person.jpg" class="card-img-top" style="height: 18rem;" alt="Picture">
+  <div class="card-body d-flex flex-column bg-light">
+    <h4 class="card-title mb-0 fw-bold">{{ hero.name }}</h4>
+    <p class="card-text">{{hero.description}}</p>
+    <h5 class="mb-0">Hős szuperereje: </h5>
+    <p class="card-text">{{hero.superpower}}</p>
+
+    <form #fileForm="ngForm" class="file__manager--form mt-auto" enctype="multipart/form-data">
+      <input #fileUpload (change)="onUploadImage($event)" multiple name="file" type="file" class="file__input">
+      <button (click)="fileUpload.click()" class="btn upload__btn">Kép kiválasztása</button>
+      <button (click)="onUpdateHero(hero)" class="btn update__btn">Kép feltöltése</button> 
+    </form>
+
+    <button (click)="onDeleteHero(hero)" class="btn btn-danger">Törlés</button>
+
+  </div>
+</div>

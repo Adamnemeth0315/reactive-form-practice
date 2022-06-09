@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row">
+    <div class="col-8 offset-2">
+      <h1>Fő oldal</h1>
+      <h3 *ngIf="user">Üdvözlünk az oldalon {{user.username}}!</h3>
+      <div class="timer-container">
+        <strong class="timer p-1">Időzítő: </strong> <small class="time p-1">{{minutes}}:{{seconds < 10 ? '0'+seconds : seconds}}</small>
+        <h3 *ngIf="timeEnding">{{timeEndingMessage}}</h3>
+        <button [disabled]="timerIsRun" (click)="countDown()" class="btn btn-primary start-btn m-2">Start</button>
+      </div>
+    </div>
+  </div>
+</div>

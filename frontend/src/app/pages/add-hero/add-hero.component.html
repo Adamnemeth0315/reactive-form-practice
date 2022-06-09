@@ -1,0 +1,48 @@
+<div class="registry-container">
+  <div class="row">
+    <div class="col-10 offset-1">
+      <h1>Új hős hozzáadása</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-8 offset-2">
+      <div class="col-10 mx-auto col-md-6 offset-md-3 mt-5">
+        <form [formGroup]="heroGroup" (ngSubmit)="addHero()">
+          
+          <div class="form-group">
+            <label for="name">Név:</label>
+            <input name="name" id="name" formControlName="name" type="text" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label for="description">Leírás: </label>
+            <input name="description" id="description" formControlName="description" type="text" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label for="level">Szint:</label>
+            <input name="level" id="level" formControlName="level" type="number" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label for="superpower">Szupererő:</label>
+            <select class="form-control" name="superpower" id="superpower" formControlName="superpower">
+              <option [ngValue]="null" disabled>Válaszd ki a szupererőt</option>
+              <option *ngFor="let power of superpowers" [ngValue]="power.value">{{power.power}}</option>
+            </select>
+          </div>
+          
+          <input #fileUpload (change)=onSave($event) multiple name="file" type="file" class="file__input">
+          <button type="button" (click)="fileUpload.click()" class="upload__btn">Kép kiválasztása</button>
+          
+          <div class="d-grid col-8 mx-auto mt-3">
+            <button [disabled]="heroGroup.invalid"  type="submit" class="btn btn-primary btn-block my-5">
+              Küldés
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

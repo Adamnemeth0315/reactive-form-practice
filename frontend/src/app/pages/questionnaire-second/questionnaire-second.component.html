@@ -1,0 +1,80 @@
+<form [formGroup]="form">
+    <div formGroupName="secondGroup">
+
+        <section class="col-10 offset-1 mt-2">
+            <p class="mb-2">Mennyire volt egyértelmű az oldal használata?</p>
+            <div
+              class="form-check"
+              *ngFor="let simplicity of simplicityArray; let i = index"
+            >
+              <input
+                class="form-check-input"
+                type="radio"
+                name="simplicity"
+                formControlName="simplicity"
+                [id]="simplicity.value"
+                [value]="simplicity.value"
+              />
+              <label class="form-check-label" [for]="simplicity.value">{{
+                simplicity.name
+              }}</label>
+            </div>
+          </section>
+  
+          <section class="col-10 offset-1 mt-2">
+            <p class="mb-2">
+              Mennyire voltál megelégedve az oldal teljesítményével?
+            </p>
+            <div
+              class="form-check"
+              *ngFor="let performance of performanceArray; let i = index"
+            >
+              <input
+                class="form-check-input"
+                type="radio"
+                name="performance"
+                formControlName="performance"
+                [id]="performance.value"
+                [value]="performance.value"
+              />
+              <label class="form-check-label" [for]="performance.value">{{
+                performance.name
+              }}</label>
+            </div>
+          </section>
+  
+          <section class="col-10 offset-1 mt-2">
+            <p class="mb-2">Írd le a véleményed az oldalról.</p>
+            <textarea
+              formControlName="opinion"
+              class="form-control mb-2"
+              cols="20"
+              rows="5"
+            ></textarea>
+          </section>
+  
+          <section class="col-10 offset-1 mt-2 mb-4">
+            <p class="mb-2">
+              Osztályozza az oldalunkat egytől ötig terjedő skálán.
+              <span class="alert__span">*</span>
+            </p>
+            <div
+              class="form-check"
+              *ngFor="let scoring of scoringArray; let i = index"
+            >
+              <input
+                class="form-check-input"
+                type="radio"
+                name="scoring"
+                formControlName="scoring"
+                [id]="scoring.value"
+                [value]="scoring.value"
+              />
+              <label class="form-check-label" [for]="scoring.value">{{
+                scoring.name
+              }}</label>
+            </div>
+          </section>
+
+    </div>
+</form>

@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="row">
+    <div class="col-10 offset-1">
+      <h1 class="main__title text-center">Elégedettségi Kérdőív</h1>
+
+      <form
+        [formGroup]="questionnaireForm"
+        (ngSubmit)="onSubmit()"
+        class="form-group"
+      >
+        <app-questionnaire-first
+          *ngIf="currentPage === 1"
+          formGroupName="firstGroup"
+        ></app-questionnaire-first>
+
+        <app-questionnaire-second
+          *ngIf="currentPage !== 1"
+          formGroupName="secondGroup"
+        ></app-questionnaire-second>
+
+        <div class="btn-group mt-2 mb-4 d-flex justify-content-center">
+          <button
+            *ngIf="currentPage === 2"
+            [disabled]="questionnaireForm.invalid"
+            class="btn btn-primary col-8"
+            type="submit"
+          >
+            Küldés
+          </button>
+        </div>
+      </form>
+
+      <p class="m-2">{{ currentPage }}. oldal</p>
+
+      <nav aria-label="Ez egy lapozó.">
+        <ul class="pagination d-flex justify-content-center">
+          <li class="page-item">
+            <button
+              class="btn btn-outline-info"
+              [disabled]="currentPage === 1"
+              (click)="onStepPage(-1)"
+              href="#"
+              type="button"
+              tabindex="-1"
+            >
+              Előző
+            </button>
+          </li>
+          <li class="page-item">
+            <button
+              [disabled]="currentPage === 2"
+              (click)="onStepPage(1)"
+              href="#"
+              type="button"
+              class="btn btn-outline-info"
+              href="#"
+            >
+              Következő
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>

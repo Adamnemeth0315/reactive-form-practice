@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Biztosan elhagyja az oldalt?</h1>
+<mat-dialog-content>
+    <p>Az adatok nincsenek elmentve, fontolja meg az űrlap mentését!</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>
+        Mégse
+    </button>
+    <button mat-button [mat-dialog-close]="true">
+        Tovább
+    </button>
+</mat-dialog-actions>
